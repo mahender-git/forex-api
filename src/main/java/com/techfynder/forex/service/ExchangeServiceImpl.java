@@ -1,6 +1,5 @@
 package com.techfynder.forex.service;
 
-import com.techfynder.forex.controller.ExchangeApi;
 import com.techfynder.forex.exception.TechfynderException;
 import com.techfynder.forex.repositary.ExchangeRepository;
 import com.techfynder.forex.utils.DateUtils;
@@ -32,19 +31,19 @@ public class ExchangeServiceImpl implements ExchangeService {
             throw new TechfynderException("Data not found in db");
         }
         ExchangeResponse exchangeResponse = null;
-        if(exchangeResult.getRates().containsKey(exchangeRequest.getLocalCurrency()) && exchangeResult.getRates().containsKey(exchangeRequest.getExchangeCurrency())){
+        if(exchangeResult.getRates().containsKey(exchangeRequest.getExchangeFrom()) && exchangeResult.getRates().containsKey(exchangeRequest.getExchangeTo())){
             exchangeResponse = new ExchangeResponse();
-            exchangeResponse.setExchangeDate(DateUtils.convertUtilDateToString(exchangeRequest.getDate()));
-            exchangeResponse.setExchangeFrom(exchangeRequest.getLocalCurrency());
-            exchangeResponse.setExchangeTo(exchangeRequest.getExchangeCurrency());
+            exchangeResponse.setExchangeDate(DateUtils.convertUtilDateToString(exchangeRequest.getExchangeDate(),TechfynderConstants.DD_MMM_YYYY));
+            exchangeResponse.setExchangeFrom(exchangeRequest.getExchangeFrom());
+            exchangeResponse.setExchangeTo(exchangeRequest.getExchangeTo());
             exchangeResponse.setBaseCurrency(exchangeResult.getBaseCurrency());
-            BigDecimal localExchangeRate = exchangeResult.getRates().get(exchangeRequest.getLocalCurrency());
-            BigDecimal foreignExchangeRate = exchangeResult.getRates().get(exchangeRequest.getExchangeCurrency());
-            exchangeResponse.setExchangeRate(exchangeResult.getRates().get(exchangeRequest.getLocalCurrency()));
-            exchangeResponse.setConvertedValue(calculateExchangeValue(localExchangeRate,foreignExchangeRate,exchangeRequest.getAmount()));
+            BigDecimal localExchangeRate = exchangeResult.getRates().get(exchangeRequest.getExchangeFrom());
+            BigDecimal foreignExchangeRate = exchangeResult.getRates().get(exchangeRequest.getExchangeTo());
+            exchangeResponse.setExchangeRate(exchangeResult.getRates().get(exchangeRequest.getExchangeFrom()));
+            exchangeResponse.setConvertedValue(calculateExchangeValue(localExchangeRate,foreignExchangeRate,exchangeRequest.getExchangeValue()));
         }else{
-            logger.info("exchange rates not found for {} to {}",exchangeRequest.getLocalCurrency(),exchangeRequest.getExchangeCurrency());
-            throw new TechfynderException("exchange rates not found for: "+exchangeRequest.getLocalCurrency()+" to "+ exchangeRequest.getExchangeCurrency());
+            logger.info("exchange rates not found for {} to {}",exchangeRequest.getExchangeFrom(),exchangeRequest.getExchangeTo());
+            throw new TechfynderException("exchange rates not found for: "+exchangeRequest.getExchangeFrom()+" to "+ exchangeRequest.getExchangeTo());
         }
         logger.info("getExchangeValue service method completed in {} ms", (System.currentTimeMillis() - startTime));
         return exchangeResponse;

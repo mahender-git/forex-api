@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 
-@Document(collection = "pract_coll")
+@Document(collection = "exchange_rates")
 public class ExchangeResult {
     @Id
     private String _id;

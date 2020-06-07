@@ -1,6 +1,6 @@
 <configuration>
 
-    <property name="HOME_LOG" value="C:/logs/forex/forex.log"/>
+    <property name="HOME_LOG" value="logs/forex-api.log"/>
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG}</file>

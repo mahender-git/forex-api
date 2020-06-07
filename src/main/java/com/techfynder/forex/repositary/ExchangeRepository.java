@@ -9,8 +9,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-
 @Repository
 public class ExchangeRepository {
 
@@ -19,13 +17,13 @@ public class ExchangeRepository {
 
     public ExchangeResult getExchangeResult(ExchangeRequest exchangeRequest){
         Query query = exchangeResultQueryBuild(exchangeRequest);
-        ExchangeResult exchangeResult = mongoTemplate.findOne(query,ExchangeResult.class,"pract_coll");
+        ExchangeResult exchangeResult = mongoTemplate.findOne(query,ExchangeResult.class);
         return exchangeResult;
     }
 
     private Query exchangeResultQueryBuild(ExchangeRequest exchangeRequest){
         Query query = new Query();
-        query.addCriteria(Criteria.where("date").is(exchangeRequest.getDate() == null ? DateUtils.getCurrentZoneDate() : exchangeRequest.getDate()));
+        query.addCriteria(Criteria.where("date").is(exchangeRequest.getExchangeDate() == null ? DateUtils.getCurrentZoneDate() : exchangeRequest.getExchangeDate()));
         return query;
     }
 }
