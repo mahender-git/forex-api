@@ -1,0 +1,133 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ExchangeRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.techfynder.forex.repositary</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ExchangeRepository (com.techfynder.forex.repositary)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExchangeRepository</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ExchangeRepository$MockitoMock$108069409</td>
+  </tr>
+  <tr>
+    <td class="name">ExchangeRepository$MockitoMock$108069409$auxiliary$VopXWmgd</td>
+  </tr>
+  <tr>
+    <td class="name">ExchangeRepository$MockitoMock$108069409$auxiliary$wsj3c0os</td>
+  </tr>
+  <tr>
+    <td class="name">ExchangeRepository$MockitoMock$108069409$auxiliary$y2elbToO</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 7)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.techfynder.forex.repositary;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.techfynder.forex.utils.DateUtils;
+<i>4</i>&nbsp;import com.techfynder.forex.vo.ExchangeRequest;
+<i>5</i>&nbsp;import com.techfynder.forex.vo.ExchangeResult;
+<i>6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>7</i>&nbsp;import org.springframework.data.mongodb.core.MongoTemplate;
+<i>8</i>&nbsp;import org.springframework.data.mongodb.core.query.Criteria;
+<i>9</i>&nbsp;import org.springframework.data.mongodb.core.query.Query;
+<i>10</i>&nbsp;import org.springframework.stereotype.Repository;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.util.Date;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;@Repository
+<b class="nc"><i>15</i>&nbsp;public class ExchangeRepository {</b>
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    @Autowired
+<i>18</i>&nbsp;    private MongoTemplate mongoTemplate;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public ExchangeResult getExchangeResult(ExchangeRequest exchangeRequest){
+<b class="nc"><i>21</i>&nbsp;        Query query = exchangeResultQueryBuild(exchangeRequest);</b>
+<b class="nc"><i>22</i>&nbsp;        ExchangeResult exchangeResult = mongoTemplate.findOne(query,ExchangeResult.class,&quot;pract_coll&quot;);</b>
+<b class="nc"><i>23</i>&nbsp;        return exchangeResult;</b>
+<i>24</i>&nbsp;    }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;    private Query exchangeResultQueryBuild(ExchangeRequest exchangeRequest){
+<b class="nc"><i>27</i>&nbsp;        Query query = new Query();</b>
+<b class="nc"><i>28</i>&nbsp;        query.addCriteria(Criteria.where(&quot;date&quot;).is(exchangeRequest.getDate() == null ? DateUtils.getCurrentZoneDate() : exchangeRequest.getDate()));</b>
+<b class="nc"><i>29</i>&nbsp;        return query;</b>
+<i>30</i>&nbsp;    }
+<i>31</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2020-06-05 16:17</div>
+</div>
+</body>
+</html>
