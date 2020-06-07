@@ -1,7 +1,6 @@
 package com.techfynder.forex.vo;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public class ExchangeResponse {
     private String exchangeDate;

@@ -1,6 +1,5 @@
 package com.techfynder.forex;
 
-import com.techfynder.forex.repositary.ExchangeRepository;
 import com.techfynder.forex.utils.DateUtils;
 import com.techfynder.forex.vo.ExchangeResult;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

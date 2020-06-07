@@ -1,6 +1,5 @@
 package com.techfynder.forex.controller;
 
-import com.techfynder.forex.ForexApplication;
 import com.techfynder.forex.exception.TechfynderException;
 import com.techfynder.forex.service.ExchangeService;
 import com.techfynder.forex.vo.ExchangeRequest;
