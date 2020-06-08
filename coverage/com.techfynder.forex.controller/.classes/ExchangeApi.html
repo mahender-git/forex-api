@@ -74,55 +74,54 @@
 
 <div class="sourceCode"><i>1</i>&nbsp;package com.techfynder.forex.controller;
 <i>2</i>&nbsp;
-<i>3</i>&nbsp;import com.techfynder.forex.ForexApplication;
-<i>4</i>&nbsp;import com.techfynder.forex.exception.TechfynderException;
-<i>5</i>&nbsp;import com.techfynder.forex.service.ExchangeService;
-<i>6</i>&nbsp;import com.techfynder.forex.vo.ExchangeRequest;
-<i>7</i>&nbsp;import com.techfynder.forex.vo.ExchangeResponse;
-<i>8</i>&nbsp;import com.techfynder.forex.vo.ResponseObject;
-<i>9</i>&nbsp;import org.slf4j.Logger;
-<i>10</i>&nbsp;import org.slf4j.LoggerFactory;
-<i>11</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
-<i>12</i>&nbsp;import org.springframework.http.HttpStatus;
-<i>13</i>&nbsp;import org.springframework.http.MediaType;
-<i>14</i>&nbsp;import org.springframework.http.ResponseEntity;
-<i>15</i>&nbsp;import org.springframework.web.bind.annotation.RequestBody;
-<i>16</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
-<i>17</i>&nbsp;import org.springframework.web.bind.annotation.RequestMethod;
-<i>18</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
-<i>19</i>&nbsp;
-<i>20</i>&nbsp;import javax.validation.Valid;
-<i>21</i>&nbsp;
-<i>22</i>&nbsp;@RestController
-<b class="fc"><i>23</i>&nbsp;public class ExchangeApi {</b>
-<b class="fc"><i>24</i>&nbsp;    private static final Logger logger = LoggerFactory.getLogger(ExchangeApi.class.getName());</b>
-<i>25</i>&nbsp;    @Autowired
-<i>26</i>&nbsp;    private ExchangeService exchangeService;
-<i>27</i>&nbsp;
-<i>28</i>&nbsp;    @RequestMapping(method= RequestMethod.POST,value=&quot;/exchange&quot;,consumes = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
-<i>29</i>&nbsp;    public ResponseEntity&lt;?&gt; getExchangeValue(@Valid @RequestBody ExchangeRequest exchangeRequest){
-<b class="nc"><i>30</i>&nbsp;        long startTime = System.currentTimeMillis();</b>
-<b class="nc"><i>31</i>&nbsp;        logger.info(&quot;/exchange api received input request:{}&quot;,exchangeRequest);</b>
-<i>32</i>&nbsp;        try{
-<b class="nc"><i>33</i>&nbsp;            ExchangeResponse exchangeResponse = exchangeService.getExchangeValue(exchangeRequest);</b>
-<b class="nc"><i>34</i>&nbsp;            logger.info(&quot;exchange api service completed in:{} ms&quot;,(System.currentTimeMillis() - startTime));</b>
-<b class="nc"><i>35</i>&nbsp;            return new ResponseEntity&lt;ExchangeResponse&gt;(exchangeResponse, HttpStatus.OK);</b>
-<b class="nc"><i>36</i>&nbsp;        }catch (TechfynderException ex){</b>
-<b class="nc"><i>37</i>&nbsp;            ResponseObject responseObject = new ResponseObject(&quot;success&quot;,ex.getMessage(),exchangeRequest);</b>
-<b class="nc"><i>38</i>&nbsp;            return new ResponseEntity&lt;ResponseObject&gt;(responseObject, HttpStatus.OK);</b>
-<b class="nc"><i>39</i>&nbsp;        }catch(Exception ex){</b>
-<b class="nc"><i>40</i>&nbsp;            ResponseObject responseObject = new ResponseObject(&quot;error&quot;,ex.getMessage(),exchangeRequest);</b>
-<b class="nc"><i>41</i>&nbsp;            return new ResponseEntity&lt;ResponseObject&gt;(responseObject, HttpStatus.INTERNAL_SERVER_ERROR);</b>
-<i>42</i>&nbsp;        }
-<i>43</i>&nbsp;    }
-<i>44</i>&nbsp;
-<i>45</i>&nbsp;}
+<i>3</i>&nbsp;import com.techfynder.forex.exception.TechfynderException;
+<i>4</i>&nbsp;import com.techfynder.forex.service.ExchangeService;
+<i>5</i>&nbsp;import com.techfynder.forex.vo.ExchangeRequest;
+<i>6</i>&nbsp;import com.techfynder.forex.vo.ExchangeResponse;
+<i>7</i>&nbsp;import com.techfynder.forex.vo.ResponseObject;
+<i>8</i>&nbsp;import org.slf4j.Logger;
+<i>9</i>&nbsp;import org.slf4j.LoggerFactory;
+<i>10</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>11</i>&nbsp;import org.springframework.http.HttpStatus;
+<i>12</i>&nbsp;import org.springframework.http.MediaType;
+<i>13</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i>14</i>&nbsp;import org.springframework.web.bind.annotation.RequestBody;
+<i>15</i>&nbsp;import org.springframework.web.bind.annotation.RequestMapping;
+<i>16</i>&nbsp;import org.springframework.web.bind.annotation.RequestMethod;
+<i>17</i>&nbsp;import org.springframework.web.bind.annotation.RestController;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import javax.validation.Valid;
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;@RestController
+<b class="fc"><i>22</i>&nbsp;public class ExchangeApi {</b>
+<b class="fc"><i>23</i>&nbsp;    private static final Logger logger = LoggerFactory.getLogger(ExchangeApi.class.getName());</b>
+<i>24</i>&nbsp;    @Autowired
+<i>25</i>&nbsp;    private ExchangeService exchangeService;
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    @RequestMapping(method= RequestMethod.POST,value=&quot;/exchange&quot;,consumes = {MediaType.APPLICATION_XML_VALUE,MediaType.APPLICATION_JSON_VALUE},produces = {MediaType.APPLICATION_JSON_VALUE})
+<i>28</i>&nbsp;    public ResponseEntity&lt;?&gt; getExchangeValue(@Valid @RequestBody ExchangeRequest exchangeRequest){
+<b class="nc"><i>29</i>&nbsp;        long startTime = System.currentTimeMillis();</b>
+<b class="nc"><i>30</i>&nbsp;        logger.info(&quot;/exchange api received input request:{}&quot;,exchangeRequest);</b>
+<i>31</i>&nbsp;        try{
+<b class="nc"><i>32</i>&nbsp;            ExchangeResponse exchangeResponse = exchangeService.getExchangeValue(exchangeRequest);</b>
+<b class="nc"><i>33</i>&nbsp;            logger.info(&quot;exchange api service completed in:{} ms&quot;,(System.currentTimeMillis() - startTime));</b>
+<b class="nc"><i>34</i>&nbsp;            return new ResponseEntity&lt;ExchangeResponse&gt;(exchangeResponse, HttpStatus.OK);</b>
+<b class="nc"><i>35</i>&nbsp;        }catch (TechfynderException ex){</b>
+<b class="nc"><i>36</i>&nbsp;            ResponseObject responseObject = new ResponseObject(&quot;success&quot;,ex.getMessage(),exchangeRequest);</b>
+<b class="nc"><i>37</i>&nbsp;            return new ResponseEntity&lt;ResponseObject&gt;(responseObject, HttpStatus.OK);</b>
+<b class="nc"><i>38</i>&nbsp;        }catch(Exception ex){</b>
+<b class="nc"><i>39</i>&nbsp;            ResponseObject responseObject = new ResponseObject(&quot;error&quot;,ex.getMessage(),exchangeRequest);</b>
+<b class="nc"><i>40</i>&nbsp;            return new ResponseEntity&lt;ResponseObject&gt;(responseObject, HttpStatus.INTERNAL_SERVER_ERROR);</b>
+<i>41</i>&nbsp;        }
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-06-05 16:17</div>
+    <div style="float:right;">generated on 2020-06-08 10:34</div>
 </div>
 </body>
 </html>

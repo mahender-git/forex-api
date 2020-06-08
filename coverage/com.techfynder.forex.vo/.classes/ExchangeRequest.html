@@ -77,83 +77,89 @@
 <i>3</i>&nbsp;import com.fasterxml.jackson.annotation.JsonFormat;
 <i>4</i>&nbsp;
 <i>5</i>&nbsp;import javax.validation.constraints.Min;
-<i>6</i>&nbsp;import javax.validation.constraints.NotNull;
-<i>7</i>&nbsp;import com.techfynder.forex.utils.TechfynderConstants;
-<i>8</i>&nbsp;
+<i>6</i>&nbsp;import javax.validation.constraints.NotEmpty;
+<i>7</i>&nbsp;import javax.validation.constraints.NotNull;
+<i>8</i>&nbsp;import com.techfynder.forex.utils.TechfynderConstants;
 <i>9</i>&nbsp;
-<i>10</i>&nbsp;import java.math.BigDecimal;
-<i>11</i>&nbsp;import java.util.Date;
-<i>12</i>&nbsp;
-<i>13</i>&nbsp;public class ExchangeRequest {
-<i>14</i>&nbsp;
-<i>15</i>&nbsp;    private String localCurrency;
-<i>16</i>&nbsp;    private BigDecimal amount;
-<i>17</i>&nbsp;    private String exchangeCurrency;
-<i>18</i>&nbsp;
-<i>19</i>&nbsp;
-<i>20</i>&nbsp;    @JsonFormat(pattern=&quot;yyyy-MM-dd&quot;)
-<i>21</i>&nbsp;    @NotNull(message = TechfynderConstants.INVALID_DATE)
-<i>22</i>&nbsp;    private Date date;
-<i>23</i>&nbsp;
-<i>24</i>&nbsp;
-<b class="nc"><i>25</i>&nbsp;    public ExchangeRequest() {</b>
-<b class="nc"><i>26</i>&nbsp;    }</b>
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.math.BigDecimal;
+<i>12</i>&nbsp;import java.util.Date;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class ExchangeRequest {
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    @NotNull(message = TechfynderConstants.EXCHANGE_FROM_CURRENCY_SHOULD_NOT_EMPTY)
+<i>17</i>&nbsp;    @NotEmpty(message = TechfynderConstants.EXCHANGE_FROM_CURRENCY_SHOULD_NOT_EMPTY)
+<i>18</i>&nbsp;    private String exchangeFrom;
+<i>19</i>&nbsp;    @NotNull(message = TechfynderConstants.EXCHANGE_TO_CURRENCY_SHOULD_NOT_EMPTY)
+<i>20</i>&nbsp;    @NotEmpty(message = TechfynderConstants.EXCHANGE_TO_CURRENCY_SHOULD_NOT_EMPTY)
+<i>21</i>&nbsp;    private String exchangeTo;
+<i>22</i>&nbsp;    @JsonFormat(pattern=&quot;yyyy-MM-dd&quot;)
+<i>23</i>&nbsp;    @NotNull(message = TechfynderConstants.INVALID_DATE)
+<i>24</i>&nbsp;    private Date exchangeDate;
+<i>25</i>&nbsp;    @Min(value = 1,message=TechfynderConstants.EXCHANGE_FROM_CURRENCY_SHOULD_GREATER_THAN_ZERO)
+<i>26</i>&nbsp;    private BigDecimal exchangeValue;
 <i>27</i>&nbsp;
-<b class="fc"><i>28</i>&nbsp;    public ExchangeRequest(String localCurrency, BigDecimal amount, String exchangeCurrency,Date date) {</b>
-<b class="fc"><i>29</i>&nbsp;        this.localCurrency = localCurrency;</b>
-<b class="fc"><i>30</i>&nbsp;        this.amount = amount;</b>
-<b class="fc"><i>31</i>&nbsp;        this.exchangeCurrency = exchangeCurrency;</b>
-<b class="fc"><i>32</i>&nbsp;        this.date = date;</b>
-<b class="fc"><i>33</i>&nbsp;    }</b>
-<i>34</i>&nbsp;
-<i>35</i>&nbsp;    public String getLocalCurrency() {
-<b class="fc"><i>36</i>&nbsp;        return localCurrency;</b>
-<i>37</i>&nbsp;    }
-<i>38</i>&nbsp;
-<i>39</i>&nbsp;    public void setLocalCurrency(String localCurrency) {
-<b class="nc"><i>40</i>&nbsp;        this.localCurrency = localCurrency;</b>
-<b class="nc"><i>41</i>&nbsp;    }</b>
-<i>42</i>&nbsp;
-<i>43</i>&nbsp;    public BigDecimal getAmount() {
-<b class="fc"><i>44</i>&nbsp;        return amount;</b>
-<i>45</i>&nbsp;    }
-<i>46</i>&nbsp;
-<i>47</i>&nbsp;    public void setAmount(BigDecimal amount) {
-<b class="nc"><i>48</i>&nbsp;        this.amount = amount;</b>
-<b class="nc"><i>49</i>&nbsp;    }</b>
-<i>50</i>&nbsp;
-<i>51</i>&nbsp;    public String getExchangeCurrency() {
-<b class="fc"><i>52</i>&nbsp;        return exchangeCurrency;</b>
-<i>53</i>&nbsp;    }
-<i>54</i>&nbsp;
-<i>55</i>&nbsp;    public void setExchangeCurrency(String exchangeCurrency) {
-<b class="nc"><i>56</i>&nbsp;        this.exchangeCurrency = exchangeCurrency;</b>
-<b class="nc"><i>57</i>&nbsp;    }</b>
-<i>58</i>&nbsp;
-<i>59</i>&nbsp;    @NotNull(message = TechfynderConstants.INVALID_DATE)
-<i>60</i>&nbsp;    public Date getDate() {
-<b class="fc"><i>61</i>&nbsp;        return date;</b>
-<i>62</i>&nbsp;    }
-<i>63</i>&nbsp;
-<i>64</i>&nbsp;    public void setDate(Date date) {
-<b class="nc"><i>65</i>&nbsp;        this.date = date;</b>
-<b class="nc"><i>66</i>&nbsp;    }</b>
-<i>67</i>&nbsp;
-<i>68</i>&nbsp;    @Override
-<i>69</i>&nbsp;    public String toString() {
-<b class="nc"><i>70</i>&nbsp;        return &quot;ExchangeRequest{&quot; +</b>
-<i>71</i>&nbsp;                &quot;localCurrency=&#39;&quot; + localCurrency + &#39;\&#39;&#39; +
-<i>72</i>&nbsp;                &quot;, amount=&quot; + amount +
-<i>73</i>&nbsp;                &quot;, exchangeCurrency=&#39;&quot; + exchangeCurrency + &#39;\&#39;&#39; +
-<i>74</i>&nbsp;                &#39;}&#39;;
-<i>75</i>&nbsp;    }
-<i>76</i>&nbsp;}
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;
+<b class="nc"><i>31</i>&nbsp;    public ExchangeRequest() {</b>
+<b class="nc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;    public ExchangeRequest(String exchangeFrom, BigDecimal exchangeValue, String exchangeTo, Date exchangeDate) {</b>
+<b class="fc"><i>35</i>&nbsp;        this.exchangeFrom = exchangeFrom;</b>
+<b class="fc"><i>36</i>&nbsp;        this.exchangeValue = exchangeValue;</b>
+<b class="fc"><i>37</i>&nbsp;        this.exchangeTo = exchangeTo;</b>
+<b class="fc"><i>38</i>&nbsp;        this.exchangeDate = exchangeDate;</b>
+<b class="fc"><i>39</i>&nbsp;    }</b>
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;    public String getExchangeFrom() {
+<b class="fc"><i>42</i>&nbsp;        return exchangeFrom;</b>
+<i>43</i>&nbsp;    }
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    public void setExchangeFrom(String exchangeFrom) {
+<b class="nc"><i>46</i>&nbsp;        this.exchangeFrom = exchangeFrom;</b>
+<b class="nc"><i>47</i>&nbsp;    }</b>
+<i>48</i>&nbsp;
+<i>49</i>&nbsp;    public BigDecimal getExchangeValue() {
+<b class="fc"><i>50</i>&nbsp;        return exchangeValue;</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public void setExchangeValue(BigDecimal exchangeValue) {
+<b class="nc"><i>54</i>&nbsp;        this.exchangeValue = exchangeValue;</b>
+<b class="nc"><i>55</i>&nbsp;    }</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    public String getExchangeTo() {
+<b class="fc"><i>58</i>&nbsp;        return exchangeTo;</b>
+<i>59</i>&nbsp;    }
+<i>60</i>&nbsp;
+<i>61</i>&nbsp;    public void setExchangeTo(String exchangeTo) {
+<b class="nc"><i>62</i>&nbsp;        this.exchangeTo = exchangeTo;</b>
+<b class="nc"><i>63</i>&nbsp;    }</b>
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    public Date getExchangeDate() {
+<b class="fc"><i>66</i>&nbsp;        return exchangeDate;</b>
+<i>67</i>&nbsp;    }
+<i>68</i>&nbsp;
+<i>69</i>&nbsp;    public void setExchangeDate(Date exchangeDate) {
+<b class="nc"><i>70</i>&nbsp;        this.exchangeDate = exchangeDate;</b>
+<b class="nc"><i>71</i>&nbsp;    }</b>
+<i>72</i>&nbsp;
+<i>73</i>&nbsp;    @Override
+<i>74</i>&nbsp;    public String toString() {
+<b class="nc"><i>75</i>&nbsp;        return &quot;ExchangeRequest{&quot; +</b>
+<i>76</i>&nbsp;                &quot;exchangeFrom=&#39;&quot; + exchangeFrom + &#39;\&#39;&#39; +
+<i>77</i>&nbsp;                &quot;, exchangeTo=&#39;&quot; + exchangeTo + &#39;\&#39;&#39; +
+<i>78</i>&nbsp;                &quot;, exchangeDate=&quot; + exchangeDate +
+<i>79</i>&nbsp;                &quot;, amount=&quot; + exchangeValue +
+<i>80</i>&nbsp;                &#39;}&#39;;
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-06-05 16:17</div>
+    <div style="float:right;">generated on 2020-06-08 10:34</div>
 </div>
 </body>
 </html>

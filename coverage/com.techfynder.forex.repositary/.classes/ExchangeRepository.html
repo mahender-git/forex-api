@@ -55,16 +55,16 @@
 </td>
 </tr>
   <tr>
-    <td class="name">ExchangeRepository$MockitoMock$108069409</td>
+    <td class="name">ExchangeRepository$MockitoMock$1772271522</td>
   </tr>
   <tr>
-    <td class="name">ExchangeRepository$MockitoMock$108069409$auxiliary$VopXWmgd</td>
+    <td class="name">ExchangeRepository$MockitoMock$1772271522$auxiliary$BHqONeRL</td>
   </tr>
   <tr>
-    <td class="name">ExchangeRepository$MockitoMock$108069409$auxiliary$wsj3c0os</td>
+    <td class="name">ExchangeRepository$MockitoMock$1772271522$auxiliary$gUBYwgdH</td>
   </tr>
   <tr>
-    <td class="name">ExchangeRepository$MockitoMock$108069409$auxiliary$y2elbToO</td>
+    <td class="name">ExchangeRepository$MockitoMock$1772271522$auxiliary$pBkPX2hv</td>
   </tr>
 <tr>
   <td class="name"><strong>total</strong></td>
@@ -102,32 +102,30 @@
 <i>9</i>&nbsp;import org.springframework.data.mongodb.core.query.Query;
 <i>10</i>&nbsp;import org.springframework.stereotype.Repository;
 <i>11</i>&nbsp;
-<i>12</i>&nbsp;import java.util.Date;
-<i>13</i>&nbsp;
-<i>14</i>&nbsp;@Repository
-<b class="nc"><i>15</i>&nbsp;public class ExchangeRepository {</b>
-<i>16</i>&nbsp;
-<i>17</i>&nbsp;    @Autowired
-<i>18</i>&nbsp;    private MongoTemplate mongoTemplate;
-<i>19</i>&nbsp;
-<i>20</i>&nbsp;    public ExchangeResult getExchangeResult(ExchangeRequest exchangeRequest){
-<b class="nc"><i>21</i>&nbsp;        Query query = exchangeResultQueryBuild(exchangeRequest);</b>
-<b class="nc"><i>22</i>&nbsp;        ExchangeResult exchangeResult = mongoTemplate.findOne(query,ExchangeResult.class,&quot;pract_coll&quot;);</b>
-<b class="nc"><i>23</i>&nbsp;        return exchangeResult;</b>
-<i>24</i>&nbsp;    }
-<i>25</i>&nbsp;
-<i>26</i>&nbsp;    private Query exchangeResultQueryBuild(ExchangeRequest exchangeRequest){
-<b class="nc"><i>27</i>&nbsp;        Query query = new Query();</b>
-<b class="nc"><i>28</i>&nbsp;        query.addCriteria(Criteria.where(&quot;date&quot;).is(exchangeRequest.getDate() == null ? DateUtils.getCurrentZoneDate() : exchangeRequest.getDate()));</b>
-<b class="nc"><i>29</i>&nbsp;        return query;</b>
-<i>30</i>&nbsp;    }
-<i>31</i>&nbsp;}
+<i>12</i>&nbsp;@Repository
+<b class="nc"><i>13</i>&nbsp;public class ExchangeRepository {</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Autowired
+<i>16</i>&nbsp;    private MongoTemplate mongoTemplate;
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    public ExchangeResult getExchangeResult(ExchangeRequest exchangeRequest){
+<b class="nc"><i>19</i>&nbsp;        Query query = exchangeResultQueryBuild(exchangeRequest);</b>
+<b class="nc"><i>20</i>&nbsp;        ExchangeResult exchangeResult = mongoTemplate.findOne(query,ExchangeResult.class);</b>
+<b class="nc"><i>21</i>&nbsp;        return exchangeResult;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private Query exchangeResultQueryBuild(ExchangeRequest exchangeRequest){
+<b class="nc"><i>25</i>&nbsp;        Query query = new Query();</b>
+<b class="nc"><i>26</i>&nbsp;        query.addCriteria(Criteria.where(&quot;date&quot;).is(exchangeRequest.getExchangeDate() == null ? DateUtils.getCurrentZoneDate() : exchangeRequest.getExchangeDate()));</b>
+<b class="nc"><i>27</i>&nbsp;        return query;</b>
+<i>28</i>&nbsp;    }
+<i>29</i>&nbsp;}
 </div>
 </div>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2020-06-05 16:17</div>
+    <div style="float:right;">generated on 2020-06-08 10:34</div>
 </div>
 </body>
 </html>

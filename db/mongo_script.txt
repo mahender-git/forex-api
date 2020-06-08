@@ -1,0 +1,59 @@
+
+use techfynder;
+db.createCollection("exchange_rates");
+db.exchange_rates.insertMany(
+[
+{
+"baseCurrency": "USD",
+  "date": ISODate("2020-06-06T00:00:00.000"),
+  "rates": {
+     "AED": 3.672500,
+     "GBP": 0.794266,
+     "EUR": 0.889545,
+     "INR": 75.369605,
+	 "AUD": 1.442550,
+	 "JPY": 108.920849,
+	 "USD": 1
+  }
+ },
+ {
+ "baseCurrency": "USD",
+  "date": ISODate("2020-06-05T00:00:00.000"),
+  "rates": {
+     "AED": 3.672500,
+     "GBP": 0.794266,
+     "EUR": 0.889545,
+     "INR": 75.369605,
+	 "AUD": 1.442550,
+	 "JPY": 108.920849,
+	 "USD": 1
+  }
+ },
+ {
+ "baseCurrency": "USD",
+  "date": ISODate("2020-06-04T00:00:00.000"),
+  "rates": {
+     "AED": 3.672500,
+     "GBP": 0.794266,
+     "EUR": 0.889545,
+     "INR": 75.369605,
+	 "AUD": 1.442550,
+	 "JPY": 108.920849,
+	 "USD": 1
+  }
+ },
+  {
+ "baseCurrency": "USD",
+  "date": ISODate("2020-06-03T00:00:00.000"),
+  "rates": {
+     "AED": 3.672500,
+     "GBP": 0.794266,
+     "EUR": 0.889545,
+     "INR": 75.369605,
+	 "AUD": 1.442550,
+	 "JPY": 108.920849,
+	 "USD": 1
+  }
+ }
+ ]
+ );
