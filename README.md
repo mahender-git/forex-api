@@ -16,6 +16,8 @@ run the spring boot application.
 #step 4
 open the postman & invoke the endpoint with post request.
 http://localhost:8091/forex-api/exchange
+
+
 Request payload:
 {
   "exchangeFrom": "USD",
